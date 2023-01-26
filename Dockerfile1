@@ -1,0 +1,15 @@
+
+FROM ubuntu/apache2:2.4-22.04_beta
+# ADD https://www.free-css.com/assets/files/free-css-templates/download/page287/carta.zip /var/www/html/
+# ADD https://www.free-css.com/assets/files/free-css-templates/download/page265/shine.zip /var/www/html/
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page287/covido.zip /var/www/html/
+WORKDIR /var/www/html/
+RUN apt-get update && apt-get install -y unzip
+RUN unzip covido.zip
+RUN cp -rvf covido-html/* .
+RUN rm -rf covido-html covido.zip
+CMD ["apache2ctl", "-D", "FOREGROUND"]
+EXPOSE 80
+
+
+
